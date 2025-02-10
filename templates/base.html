@@ -5,9 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
 
-    <title>Document</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="/">Domů</a></li>
+            <li><a href="/abc">ABC</a></li>
+            <li><a href="/alfa">ALFA</a></li>
+            <li><a href="/azb">AZB</a></li>
+            <li><a href="/heb">HEB</a></li>
+        </ul>
+    </nav>
 
+    <div id="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>Moje stránka.</p>
+    </footer>
 </body>
+
 </html>
