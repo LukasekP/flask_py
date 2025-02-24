@@ -11,12 +11,23 @@
     <nav>
         <ul>
             <li><a href="/">Domů</a></li>
-            <li><a href="/abc">ABC</a></li>
-            <li><a href="/alfa">ALFA</a></li>
-            <li><a href="/azb">AZB</a></li>
-            <li><a href="/heb">HEB</a></li>
+            <li><a href="/login">Formular</a></li>
         </ul>
     </nav>
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul class="flash-messages">
+            {% for category, message in messages %}
+                <li class="flash-message {{ category }}">
+                    {{ message }}
+                    <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
 
     <div id="main-content">
         {% block content %}

@@ -1,31 +1,20 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash, redirect, url_for
 
 app = Flask(__name__)
 
-
+app.config["SECRET_KEY"] = "secret key"
 @app.route('/')
-def base():
-    return render_template("base.html")
+def index():
+    return render_template("index.html")
 
-
-@app.route('/abc')
-def abc():
-    return render_template("abc.html")
-
-
-@app.route('/alfa')
-def alfa():
-    return render_template("alfa.html")
-
-
-@app.route('/azb')
-def azb():
-    return render_template("azb.html")
-
-
-@app.route('/heb')
-def heb():
-    return render_template("heb.html")
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        if request.form['user'] == '123' and request.form['heslo'] == '123':
+            flash("Login successful", "success")
+            return redirect(url_for('index'))
+        flash("Login unsuccessful", "danger")
+    return render_template("login.html")
 
 
 if __name__ == '__main__':
